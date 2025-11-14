@@ -3,46 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <title>Калькулятор фрибета</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
+
+        .calculator {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            width: 320px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
         input {
             width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-        button {
             padding: 10px;
-            width: 100%;
-            background-color: #4CAF50;
-            color: white;
-            font-size: 16px;
+            margin-bottom: 15px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 16px;
         }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 5px #4CAF50;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
         #result {
             margin-top: 20px;
+            background-color: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
             white-space: pre-wrap;
+            font-weight: 500;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h2>Калькулятор фрибета</h2>
-    <label>Фрибет:</label>
-    <input type="number" id="freebet" placeholder="Введите сумму">
-    <label>Кэф 1:</label>
-    <input type="number" id="k1" step="0.01" placeholder="Коэффициент 1">
-    <label>Кэф 2:</label>
-    <input type="number" id="k2" step="0.01" placeholder="Коэффициент 2">
-    <button onclick="calculate()">Рассчитать</button>
-    <div id="result"></div>
+    <div class="calculator">
+        <h2>Калькулятор фрибета</h2>
+        <label>Фрибет:</label>
+        <input type="number" id="freebet" placeholder="Введите сумму">
+
+        <label>Кэф 1:</label>
+        <input type="number" id="k1" step="0.01" placeholder="Коэффициент 1">
+
+        <label>Кэф 2:</label>
+        <input type="number" id="k2" step="0.01" placeholder="Коэффициент 2">
+
+        <button onclick="calculate()">Рассчитать</button>
+
+        <div id="result"></div>
+    </div>
 
     <script>
         function calculate() {
