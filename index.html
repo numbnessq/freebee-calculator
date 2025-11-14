@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор фрибета</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
+        #result {
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h2>Калькулятор фрибета</h2>
+    <label>Фрибет:</label>
+    <input type="number" id="freebet" placeholder="Введите сумму">
+    <label>Кэф 1:</label>
+    <input type="number" id="k1" step="0.01" placeholder="Коэффициент 1">
+    <label>Кэф 2:</label>
+    <input type="number" id="k2" step="0.01" placeholder="Коэффициент 2">
+    <button onclick="calculate()">Рассчитать</button>
+    <div id="result"></div>
+
+    <script>
+        function calculate() {
+            let freebet = parseFloat(document.getElementById('freebet').value);
+            let k1 = parseFloat(document.getElementById('k1').value);
+            let k2 = parseFloat(document.getElementById('k2').value);
+
+            if (isNaN(freebet) || isNaN(k1) || isNaN(k2)) {
+                alert("Введите корректные числа!");
+                return;
+            }
+
+            let x1 = ((k1 - 1) * freebet) / k2;
+            let x2 = ((k2 - 1) * freebet) / k1;
+            let win1 = Math.round((k1 - 1) * freebet - x1);
+            let win2 = Math.round((k2 - 1) * freebet - x2);
+
+            let result = "";
+            if (win1 >= win2) {
+                result = `Фрибет ${freebet} на ${k1}\nСтавка на ${k2}: ${Math.round(x1)}\nВыигрыш: ${win1}`;
+            } else {
+                result = `Фрибет ${freebet} на ${k2}\nСтавка на ${k1}: ${Math.round(x2)}\nВыигрыш: ${win2}`;
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>
